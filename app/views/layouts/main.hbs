@@ -1,12 +1,17 @@
+<!DOCTYPE html>
 <html>  
   <head>
+    <meta charset="utf-8">
     <title>Express handlebars</title>
-<script src="https://d3js.org/d3.v3.min.js"></script>  
-<script src="/js/charts.js"></script>
-<link href="/css/styles.css" rel="stylesheet" type="text/css">
-</head>
+    <script src="https://d3js.org/d3.v3.min.js"></script>  
+    
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+  </head>
   <body>
     {{{body}}}
+
+    <!-- d3 stuff within the body tag so .select has something to work with -->
+    <script src="/js/charts.js"></script>
   </body>
 </html>  
 

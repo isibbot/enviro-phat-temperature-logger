@@ -1,85 +1,24 @@
-body{
-
+body {
+  margin: auto;
+  width: 960px;
 }
 
-svg {
+text {
   font: 10px sans-serif;
 }
 
-.y.axis path {
-  display: none;
-}
-
-.y.axis line {
-  stroke: #fff;
-  stroke-opacity: .2;
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
   shape-rendering: crispEdges;
 }
 
-.y.axis .zero line {
-  stroke: #000;
-  stroke-opacity: 1;
-}
-
-.title {
-  font: 300 78px Helvetica Neue;
-  fill: #666;
-}
-
-.birthyear,
-.age {
-  text-anchor: middle;
-}
-
-.birthyear {
-  fill: #fff;
-}
-
-rect {
-  fill-opacity: .6;
-  fill: #e377c2;
-}
-
-rect:first-child {
-  fill: #1f77b4;
-}svg {
-  font: 10px sans-serif;
-}
-
-.y.axis path {
+.x.axis path {
   display: none;
 }
 
-.y.axis line {
-  stroke: #fff;
-  stroke-opacity: .2;
-  shape-rendering: crispEdges;
-}
-
-.y.axis .zero line {
-  stroke: #000;
-  stroke-opacity: 1;
-}
-
-.title {
-  font: 300 78px Helvetica Neue;
-  fill: #666;
-}
-
-.birthyear,
-.age {
-  text-anchor: middle;
-}
-
-.birthyear {
-  fill: #fff;
-}
-
-rect {
-  fill-opacity: .6;
-  fill: #e377c2;
-}
-
-rect:first-child {
-  fill: #1f77b4;
+.area {
+  fill: url(#temperature-gradient);
+  stroke-width: 05px;
 }

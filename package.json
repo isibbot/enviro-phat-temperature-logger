@@ -14,6 +14,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/sibbo/enviro-phat#readme",
   "dependencies": {
+    "body-parser": "^1.16.1",
     "express": "^4.14.1",
     "express-handlebars": "^3.0.0",
     "mongoose": "^4.8.4"

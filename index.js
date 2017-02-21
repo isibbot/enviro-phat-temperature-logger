@@ -1,7 +1,8 @@
 // index.js
 const path = require('path')  
-const express = require('express')  
+const express = require('express')
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const app = express();
@@ -9,34 +10,41 @@ const app = express();
 // ------------------------ //
 // Public middelware, css, js etc
 // ------------------------ //
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/app/public'));
 
 // ------------------------ //
 // Mongoose, mongo
 // ------------------------ //
 
 // Create a database
-mongoose.connect('mongodb://localhost:27017/enviro=temperature');
+mongoose.connect('mongodb://localhost:27017/envirotemperature');
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  // we're connected!
+var Temperature = require('./app/models/temperature');
 
-console.log('Connected to db');
+// Two test entries to... test with...
+Temperature.create({ created: new Date(), reading: 66.666}, function (err, temp){
+  if(err) return handleError(err);
+  //saved
+  console.log(temp.reading + ' has been saved.');
+})
+var dt = new Date();
+dt.setDate(dt.getDate() + 1);
 
-// create a temperature schema
-var temperatureSchema = new Schema({value: 'string'});
-
-var tp = mongoose.model('temperature', temperatureSchema);
-
-tp.create({ value: 'TOM'}, function (err, tom){
-	if(err) return handleError(err);
-	//saved
-console.log(tom.value + ' has been sames');
+Temperature.create({ created: dt, reading: 99.65}, function (err, temp){
+  if(err) return handleError(err);
+  //saved
+  console.log(temp.reading + ' has been saved.');
 })
 
-});
+// ------------------------ //
+// REST
+// ------------------------ //
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+var port = process.env.PORT || 8080;  
+
 
 // Add handlebars 
 app.engine('.hbs', exphbs({  
@@ -48,18 +56,35 @@ app.set('view engine', '.hbs');
 
 app.set('views', path.join(__dirname, 'app/views'))  
 
-// Route
+// ------------------------ //
+// Routing
+// ------------------------ //
+
+var router = express.Router(); 
+
+//app.use('/api', router);
+
 app.get('/', (request, response) => {  
 
-  // find all temperatures
+// find all temperatures
 //  Temp.find({}, function(err, temp) {
 //  if (err) throw err;
 //    console.log(temp);
 //  })
  response.render('home', {
    name: 'John'
- })
+ });
 })
+
+app.get('/api/temperatures', function(req, res) {
+    Temperature.find(function(err, temps) {
+        if (err)
+            res.send(err);
+
+        res.json(temps);
+    });  
+});
+
 
 // Port listen
 app.listen(3000, function () {

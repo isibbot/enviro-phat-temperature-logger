@@ -1,6 +1,9 @@
+html{
+  padding: 0;
+}
 body {
-  margin: auto;
-  width: 960px;
+padding: 0;
+margin: 0;
 }
 
 text {

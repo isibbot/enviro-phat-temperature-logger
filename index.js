@@ -22,22 +22,22 @@ mongoose.connect('mongodb://localhost:27017/envirotemperature');
 var Temperature = require('./app/models/temperature');
 
 // Two test entries to... test with...
-Temperature.create({ created: new Date(), reading: 66.666}, function (err, temp){
-  if(err) return handleError(err);
-  //saved
-  console.log(temp.reading + ' has been saved.');
-})
-var dt = new Date();
-dt.setDate(dt.getDate() + 1);
+// Temperature.create({ created: new Date(), reading: 66.666}, function (err, temp){
+//   if(err) return handleError(err);
+//   //saved
+//   console.log(temp.reading + ' has been saved.');
+// })
+// var dt = new Date();
+// dt.setDate(dt.getDate() + 1);
 
-Temperature.create({ created: dt, reading: 99.65}, function (err, temp){
-  if(err) return handleError(err);
-  //saved
-  console.log(temp.reading + ' has been saved.');
-})
+// Temperature.create({ created: dt, reading: 99.65}, function (err, temp){
+//   if(err) return handleError(err);
+//   //saved
+//   console.log(temp.reading + ' has been saved.');
+// })
 
 // ------------------------ //
-// REST
+// RESTful API
 // ------------------------ //
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -62,20 +62,13 @@ app.set('views', path.join(__dirname, 'app/views'))
 
 var router = express.Router(); 
 
-//app.use('/api', router);
-
 app.get('/', (request, response) => {  
-
-// find all temperatures
-//  Temp.find({}, function(err, temp) {
-//  if (err) throw err;
-//    console.log(temp);
-//  })
  response.render('home', {
    name: 'John'
  });
 })
 
+// Return all readings in json format
 app.get('/api/temperatures', function(req, res) {
     Temperature.find(function(err, temps) {
         if (err)
@@ -84,7 +77,6 @@ app.get('/api/temperatures', function(req, res) {
         res.json(temps);
     });  
 });
-
 
 // Port listen
 app.listen(3000, function () {

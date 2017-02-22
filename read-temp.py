@@ -1,17 +1,19 @@
 from envirophat import weather
 from pymongo import MongoClient
-
+import datetime
 
 client = MongoClient()
 
 db = client.envirotemperature
 
-temps = db.temperature
+temps = db.temperatures
 
-import datetime
-tmp = weather.temperature();
+tmp = weather.temperature()
 
-templog = {"created": datetime.datetime.utcnow(), "reading": tmp}
+templog = {
+    "created": datetime.datetime.utcnow(), 
+    "reading": tmp
+    }
 
 temps.insert_one(templog).inserted_id
 

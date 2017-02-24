@@ -2,7 +2,7 @@
 
 Nodejs, Expressjs, Mongodb, Mongoose, D3.js concoction to show the [Enviro pHAT](https://shop.pimoroni.com/products/enviro-phat) by [pimoroni](https://shop.pimoroni.com/) BMP280 temperature/pressure sensor readings over time, charted by [D3.js](https://d3js.org/) 
 
-![alt text](http://imgur.com/Mu6fTQs "Pi Zero with Enviro Phat installed.")
+![alt text](http://i.imgur.com/Mu6fTQs.jpg "Pi Zero with Enviro Phat installed.")
 
 ### Usage ###
 
